@@ -1,0 +1,389 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(8px) brightness(0.9);
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100%;
+    padding: 60px 20px 120px 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.header h1 {
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.4), 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.description {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 50px;
+    max-width: 600px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+.spacer {
+    height: 40px;
+}
+
+.vital-arc-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: rgba(168, 85, 247, 0.9);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.5), 0 0 30px rgba(168, 85, 247, 0.3);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 300;
+}
+
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 900px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease;
+}
+
+.chapter-card {
+    position: relative;
+    background: rgba(20, 20, 30, 0.7);
+    border: 2px solid rgba(168, 85, 247, 0.3);
+    border-radius: 16px;
+    padding: 40px 30px;
+    backdrop-filter: blur(15px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.05);
+}
+
+.chapter-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.chapter-card:hover::before {
+    left: 100%;
+}
+
+.chapter-card:hover {
+    border-color: rgba(168, 85, 247, 0.8);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.2), 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(168, 85, 247, 0.1);
+    transform: translateY(-8px);
+    background: rgba(20, 20, 30, 0.85);
+}
+
+.chapter-card.coming-soon {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.chapter-card.coming-soon:hover {
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+}
+
+.chapter-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(168, 85, 247, 0.6);
+    margin-bottom: 15px;
+    font-family: 'Courier New', monospace;
+}
+
+.chapter-title {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.chapter-description {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.chapter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.05));
+    color: white;
+    border: 1.5px solid rgba(168, 85, 247, 0.5);
+    padding: 12px 28px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+}
+
+.chapter-btn:hover:not(.disabled) {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.15));
+    border-color: rgba(168, 85, 247, 0.8);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
+    transform: translateX(4px);
+}
+
+.chapter-btn.disabled {
+    background: rgba(100, 100, 120, 0.1);
+    border-color: rgba(100, 100, 120, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.chapter-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.chapter-btn:hover:not(.disabled) .arrow-icon {
+    transform: translateX(4px);
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.4), 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(168, 85, 247, 0.8), 0 0 60px rgba(168, 85, 247, 0.6), 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 40px;
+    }
+
+    .chapters-grid {
+        gap: 25px;
+    }
+
+    .chapter-card {
+        padding: 30px 20px;
+    }
+
+    .chapter-number {
+        font-size: 36px;
+    }
+
+    .chapter-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .chapters-grid {
+        gap: 15px;
+    }
+
+    .chapter-card {
+        padding: 25px 15px;
+    }
+
+    .chapter-number {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .chapter-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .chapter-description {
+        margin-bottom: 20px;
+    }
+
+    .chapter-btn {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: fadeInUp 1.2s ease 0.5s backwards;
+}
+
+.scroll-wheel {
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(168, 85, 247, 0.6);
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.scroll-wheel:hover {
+    border-color: rgba(168, 85, 247, 1);
+}
+
+.scroll-wheel-inner {
+    width: 4px;
+    height: 8px;
+    background-color: rgba(168, 85, 247, 0.7);
+    border-radius: 2px;
+    animation: scroll-wheel 1.5s infinite;
+}
+
+@keyframes scroll-wheel {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateY(12px);
+    }
+}
+
+.scroll-text {
+    font-size: 12px;
+    color: rgba(168, 85, 247, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+/* Credits Footer */
+.credits {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 15px 20px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6));
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+    z-index: 100;
+}
+
+.credit-name {
+    color: rgba(168, 85, 247, 0.8);
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
