@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Arc</title>
+    <link rel="stylesheet" href="chapter6.css">
+</head>
+<body style="background-color:rgb(0, 0, 0);">
+    <div class="background"></div>
+    
+    <audio id="bgMusic" autoplay loop volume="0.3">
+        <source src="fragmented memory.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="container">
+        <div class="image-wrapper">
+            <img id="slideImage" src="VACh6/1.png" alt="Slide" class="slide-image">
+        </div>
+        
+        <div class="controls">
+            <span id="counter">1 / 95</span>
+            <button id="creditsBtn" class="credits-btn">Credits</button>
+        </div>
+    </div>
+
+    <div id="creditsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="credits-text">
+                <h2>Credits</h2>
+                <div class="credit-item">
+                    <h3>Background Art</h3>
+                    <p>Pirat</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Music</h3>
+                    <p>Epik</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Slides</h3>
+                    <p>Bass</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chapter6.js"></script>
+</body>
+</html>
